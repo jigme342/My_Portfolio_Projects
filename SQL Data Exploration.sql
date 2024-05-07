@@ -14,9 +14,9 @@ ORDER BY 1
 
 SELECT location, date, total_cases,total_deaths,
        CASE 
-	       WHEN total_cases = 0 THEN NULL
-		   ELSE (CONVERT(float,total_deaths)/total_cases)*100 
-	   END AS DeathPercentage
+	    WHEN total_cases = 0 THEN NULL
+	    ELSE (CONVERT(float,total_deaths)/total_cases)*100 
+       END AS DeathPercentage
 FROM PortfolioProject..[CovidDeaths.xls]
 WHERE location like '%India%'
 ORDER BY 1;
@@ -25,9 +25,9 @@ ORDER BY 1;
 
 SELECT location, date, total_cases, population,
        CASE 
-	       WHEN total_cases = 0 THEN NULL
-		   ELSE (CONVERT(float,total_cases)/population)*100
-	   END AS DeathPercentage
+	    WHEN total_cases = 0 THEN NULL
+            ELSE (CONVERT(float,total_cases)/population)*100
+       END AS DeathPercentage
 FROM PortfolioProject..[CovidDeaths.xls]
 --WHERE location like '%India%'
 ORDER BY 1;
@@ -38,7 +38,7 @@ SELECT location,population, MAX(total_cases) AS HighestInfectionCount,
        CASE 
 	       WHEN MAX(total_cases) = 0 THEN NULL
 	       ELSE (MAX(CONVERT(float,total_cases)/population))*100
-	   END AS PercentPopulationInfected
+       END AS PercentPopulationInfected
 FROM PortfolioProject..[CovidDeaths.xls]
 GROUP BY location, population
 ORDER BY PercentPopulationInfected DESC;
